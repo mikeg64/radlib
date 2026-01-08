@@ -35,6 +35,7 @@ set(SOURCES
     src/physics.cpp
     src/solver.cpp
     src/setup.cpp
+    src/radiation_step.cpp
     src/utilities.cpp
 )
 

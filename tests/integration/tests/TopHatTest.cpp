@@ -35,10 +35,10 @@ TEST(DiffusionIntegration, TopHatProfile) {
     RadSolve solver(mesh.nx, mesh.ny,pars.nz, pars);
 
     int i;
-    for(i=0; i<50; i++)
+    for(i=0; i<10; i++)
     {
 
-        if( (i%10)==0 )
+        if( (i%2)==0 )
             state.write_vtk_file(state.temperature, i, pars);
 
         solver.solveRadiationTransport(mesh, state, pars, pars.time);

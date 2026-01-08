@@ -15,15 +15,18 @@
 #include "geometry.h"   //defines mesh
 #include "material.h"   //defines material properties
 #include "physics.h"
+#include "radsolver.h"
 
 
 
 //void solve_radiation_groups(const Mesh& mesh, State& state);
 //int setupsolver() ;
 
-class RadSolve {
+// RadSolve.hpp
+class RadSolve : public IRadSolver {
 public:
-    RadSolve(int mnx, int mny, int mnz, Pars &pars);
+    RadSolve(int nx, int ny, int nz, Pars& pars);
+
     ~RadSolve();
     //const std::vector<std::vector<double>>& getTemperatureField() const;
     //void setTemperature(int i, int j, double value);
@@ -32,9 +35,12 @@ public:
     double gradenergy(const Mesh& mesh, State& state, Pars &pars);
     double larsendelimiter(const Mesh &mesh, State &state, Pars &pars, double opact, int i, int j, int k, int ifreq,int ord=2);
     double divergence(const Mesh &mesh, State &state, Pars &pars, int i, int j, int k, int ifreq);
-    void solveRadiationTransport(const Mesh& mesh, State& state,  Pars &pars, double t);
-    void UpdateBEmission(const Mesh& mesh, State& state, Pars &pars);
-    void UpdateRadFlux(const Mesh& mesh, State& state, Pars &pars);
+
+    //interface methods
+    void solveRadiationTransport(const Mesh&, State&, Pars&, double) override;
+    void UpdateBEmission(const Mesh&, State&, Pars&) override;
+    void UpdateRadFlux(const Mesh&, State&, Pars&) override;
+
     void apply_milne_boundary_conditions(Mesh& mesh, State& state, Pars &pars);
     void apply_reflect_boundary_conditions(Mesh& mesh, State& state, Pars &pars);
     int updatestate(Pars &pars, Mesh &mesh, State &state);

@@ -1,4 +1,0 @@
-/home/mike/proj/radhypre_classkrymgdif/exdifkry3/tests/build/CMakeFiles/hyptest.dir
-/home/mike/proj/radhypre_classkrymgdif/exdifkry3/tests/build/CMakeFiles/test.dir
-/home/mike/proj/radhypre_classkrymgdif/exdifkry3/tests/build/CMakeFiles/edit_cache.dir
-/home/mike/proj/radhypre_classkrymgdif/exdifkry3/tests/build/CMakeFiles/rebuild_cache.dir

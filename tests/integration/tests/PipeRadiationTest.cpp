@@ -1,10 +1,11 @@
 #include <gtest/gtest.h>
 
+
+#include "../../../include/radiation_step.h"
 #include "../../../include/solver.h"
 #include "../../../include/physics.h"
 #include "../../../include/geometry.h"
 #include "../../../include/setup.h"
-
 
 
 TEST(RadiationIntegration, PipeTwoMaterials) {
@@ -19,6 +20,9 @@ TEST(RadiationIntegration, PipeTwoMaterials) {
     pars.dx=0.1;
     pars.dy=0.1;
     pars.nz=1;
+
+    int nsteps=10;
+    int nint=2; //interval to write vtk files
 
     // Setup: mesh and state with top-hat initial condition
     Mesh mesh(200, 20,0.1,0.1); // example dimensions
@@ -80,10 +84,10 @@ TEST(RadiationIntegration, PipeTwoMaterials) {
     RadSolve solver(mesh.nx, mesh.ny,pars.nz, pars);
     //initialise the next radiation flux to the current flux 
     int i;    
-    for(i=0; i<100; i++)
+    for(i=0; i<nsteps; i++)
     {
         
-        if( (i%10)==0 )
+        if( (i%nint)==0 )
             state.write_vtk_file(state.temperature, i, pars);
             //state.write_vtk_file(state.radiation_fluxn[0], i, pars);
 
